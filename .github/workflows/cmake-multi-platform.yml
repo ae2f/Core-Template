@@ -16,14 +16,18 @@ jobs:
         ae2f_IS_SHARED: [ ON, OFF ]
         ae2f_CXX: [  ON, OFF ]
         Generator: [ "-G Ninja", "" ]
-        prefix-cc: [ "-D CMAKE_CXX_COMPILER=" ]
-        prefix-c:  [ "-D CMAKE_C_COMPILER=" ]
 
         include:
           - c: gcc
             cc: g++
+            prefix-c: "-D CMAKE_C_COMPILER="
+            prefix-cc: "-D CMAKE_CXX_COMPILER="
+            
           - c: clang
             cc: clang++
+            prefix-c: "-D CMAKE_C_COMPILER="
+            prefix-cc: "-D CMAKE_CXX_COMPILER="
+            
           - c: ""
             cc: ""
             prefix-cc: ""
