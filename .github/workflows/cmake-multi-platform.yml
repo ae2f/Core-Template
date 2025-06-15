@@ -16,18 +16,14 @@ jobs:
         ae2f_IS_SHARED: [ ON, OFF ]
         ae2f_CXX: [  ON, OFF ]
         Generator: [ "-G Ninja", "" ]
+        prefix-cc: [ "-D CMAKE_CXX_COMPILER=" ]
+        prefix-c:  [ "-D CMAKE_C_COMPILER=" ]
 
         include:
           - c: gcc
             cc: g++
-            prefix-cc: "-D CMAKE_CXX_COMPILER="
-            prefix-c: "-D CMAKE_C_COMPILER="
-            
           - c: clang
             cc: clang++
-            prefix-cc: "-D CMAKE_CXX_COMPILER="
-            prefix-c: "-D CMAKE_C_COMPILER="
-            
           - c: ""
             cc: ""
             prefix-cc: ""
@@ -48,8 +44,8 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B build -S . ${{ matrix.Generator }}
-        ${{matrix.prefix-cc}}   ${{ matrix.cc }}
-        ${{ matrix.prefix-c }}  ${{ matrix.c }}
+        ${{matrix.prefix-cc}}${{ matrix.cc }}
+        ${{ matrix.prefix-c }}${{ matrix.c }}
         -D ae2f_IS_SHARED=${{ matrix.ae2f_IS_SHARED }}
         -D ae2f_CXX=${{ matrix.ae2f_CXX }}
 
